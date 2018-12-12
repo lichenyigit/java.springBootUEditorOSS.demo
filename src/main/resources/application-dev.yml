@@ -1,0 +1,17 @@
+spring:
+  thymeleaf:
+    cache: false
+    prefix: file:src/main/resources/templates/
+    cache-period: 0
+aliyun:
+  access:
+    id: ''
+    key: ''
+  oss:
+    endpoint: ''
+    bucket: ''
+    host: ''##图片的访问路径可以是配置好的域名，也可以是oss的域名
+    dir:
+      ueditor: 'ueditor'##oss存放的路径
+base:
+  url: 'http://127.0.0.1:8080'

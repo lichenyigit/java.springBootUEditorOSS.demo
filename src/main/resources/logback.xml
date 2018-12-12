@@ -1,0 +1,46 @@
+<configuration>
+    <property name="LOG_HOME" value="../logs" />
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %L %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/logFile.log</file>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %L %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- 日志按照分钟进行分割 -->
+    <appender name="rollingFileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/logFile/logFile %d{yyyy-MM-dd_HH-mm}.log</fileNamePattern>
+            <!-- 每个文件的大小为 1KB -->
+            <!--<MaxFileSize>10MB</MaxFileSize>-->
+            <!-- 文件有效期30天 -->
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %L %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="ch.qos" level="ERROR"/>
+    <logger name="org.apache" level="INFO" ></logger>
+    <logger name="org.mybatis" level="INFO" ></logger>
+    <logger name="org.springframework" level="ERROR" ></logger>
+    <logger name="org.hibernate" level="ERROR" ></logger>
+    <logger name="org.aspectj" level="ERROR" ></logger>
+    <logger name="sun.rmi" level="INFO" ></logger>
+    <logger name="sun.net" level="INFO" ></logger>
+    <logger name="javax.management" level="INFO" ></logger>
+    <logger name="com.alibaba" level="OFF" ></logger>
+    <logger name="org.thymeleaf" level="OFF" ></logger>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="fileAppender"/>
+        <appender-ref ref="rollingFileAppender"/>
+    </root>
+</configuration>
